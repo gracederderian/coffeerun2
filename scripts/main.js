@@ -15,7 +15,11 @@
   window.myTruck = myTruck;
   var checkList = new CheckList(CHECKLIST_SELECTOR);
   checkList.addClickHandler(myTruck.deliverOrder.bind(myTruck));
+  var Refresh = App.Refresh;
+  var refreshPage = new Refresh(SERVER_URL);
   var formHandler = new FormHandler(FORM_SELECTOR);
+
+  refreshPage.refresh();
 
   formHandler.addSubmitHandler(function(data) {
     myTruck.createOrder.call(myTruck, data);
@@ -24,4 +28,5 @@
 
   formHandler.addInputHandler(Validation.isCompanyEmail);
 
+  console.log(formHandler);
 })(window);
